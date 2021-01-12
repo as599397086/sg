@@ -13,10 +13,21 @@ module.exports = appInfo => {
   const config = exports = {};
 
   // use for cookie sign key, should change to your own and keep security
+
+  // 登录密钥
   config.keys = appInfo.name + '_1610419463997_9228';
 
   // add your middleware config here
-  config.middleware = [];
+  config.middleware = [
+    'robot'
+  ];
+
+  config.view = {
+    defaultViewEngine: 'nunjucks',
+    mapping: {
+      '.tpl': 'nunjucks',
+    },
+  };
 
   // add your user config here
   const userConfig = {
@@ -27,4 +38,10 @@ module.exports = appInfo => {
     ...config,
     ...userConfig,
   };
+};
+
+exports.robot = {
+  ua: [
+      /Baiduspider/i,
+  ]
 };
